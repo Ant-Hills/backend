@@ -1,7 +1,37 @@
-# How to get the project running:
+# Anthill Backend
 
-- First of all, make sure that you have both docker and docker-compose installed in your machine. (If you install Docker desktop in Windows or Mac OS you already have both tools)
+## Getting started
 
-- In the root directory, run
+- Go to `docs/development`
 
-`docker-compose up`
+## Features
+
+<dl>
+  <dt><b>Quick scaffolding</b></dt>
+  <dd>Create modules, services, controller - right from the CLI!</dd>
+
+  <dt><b>Instant feedback</b></dt>
+  <dd>Enjoy the best DX (Developer eXperience) and code your app at the speed of thought! Your saved changes are reflected instantaneously.</dd>
+
+  <dt><b>JWT Authentication</b></dt>
+  <dd>Installed and configured JWT authentication.</dd>
+
+  <dt><b>Next generation Typescript</b></dt>
+  <dd>Always up to date typescript version.</dd>
+
+  <dt><b>Industry-standard routing</b></dt>
+  <dd>It's natural to want to add pages (e.g. /about`) to your application, and routing makes this possible.</dd>
+
+  <dt><b>Environment Configuration</b></dt>
+  <dd>development, staging and production environment configurations</dd>
+
+  <dt><b>Swagger Api Documentation</b></dt>
+  <dd>Already integrated API documentation. To see all available endpoints visit http://localhost:3000/documentation</dd>
+
+  <dt><b>Linter</b></dt>  
+  <dd>tslint + eslint + prettier = ❤️</dd>
+</dl>
+
+## Documentation
+
+This project includes a `docs` folder with more details on:
