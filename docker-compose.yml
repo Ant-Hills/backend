@@ -1,30 +1,26 @@
 version: '3'
 services:
-  postgres:
-    image: 'postgres:9.6.1'
+  app:
+    env_file:
+      - .development.env
+    container_name: anthill_backend
+    restart: always
+    build: .
     ports:
-      - '5432:5432'
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
-  backend:
-    build:
-      dockerfile: Dockerfile.dev
-      context: '.'
-    depends_on:
+      - '$PORT:$PORT'
+    links:
       - postgres
-    ports:
-      - '5000:5000'
-    environment:
-      NODE_PORT: ${NODE_PORT}
-      POSTGRES_USER: ${POSTGRES_USER}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-      POSTGRES_DB: ${POSTGRES_DB}
-      POSTGRES_HOST: ${POSTGRES_HOST}
-      POSTGRES_PORT: ${POSTGRES_PORT}
     volumes:
       - /app/node_modules
       - .:/app
+  postgres:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: dev
+    ports:
+      - '5433:5432'
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
