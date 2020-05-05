@@ -6,6 +6,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { contextMiddleware } from './middlewares';
 import { AuthModule } from './modules/auth/auth.module';
 import { MathModule } from './modules/math/math.module';
+import { ProductcategoryModule } from './modules/productcategory/productcategory.module';
+import { RoleModule } from './modules/role/role.module';
+import { RoleService } from './modules/role/role.service';
 import { UserModule } from './modules/user/user.module';
 import { ConfigService } from './shared/services/config.service';
 import { SharedModule } from './shared/shared.module';
@@ -15,6 +18,8 @@ import { SharedModule } from './shared/shared.module';
         AuthModule,
         UserModule,
         MathModule,
+        RoleModule,
+        ProductcategoryModule,
         TypeOrmModule.forRootAsync({
             imports: [SharedModule],
             useFactory: (configService: ConfigService) =>
@@ -22,6 +27,7 @@ import { SharedModule } from './shared/shared.module';
             inject: [ConfigService],
         }),
     ],
+    providers: [RoleService],
 })
 export class AppModule implements NestModule {
     configure(consumer: MiddlewareConsumer): MiddlewareConsumer | void {

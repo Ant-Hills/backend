@@ -11,8 +11,8 @@ services:
     links:
       - postgres
     volumes:
-      - /app/node_modules
-      - .:/app
+      - /usr/src/app/node_modules
+      - .:/usr/src/app
   postgres:
     image: postgres
     restart: always
@@ -21,6 +21,11 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: dev
     ports:
-      - '5433:5432'
+      - '5432:5432'
     volumes:
       - ./db-data:/var/lib/postgresql/data
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080

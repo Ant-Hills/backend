@@ -61,7 +61,6 @@ async function bootstrap() {
     );
 
     const configService = app.select(SharedModule).get(ConfigService);
-
     app.connectMicroservice({
         transport: Transport.TCP,
         options: {

@@ -1,32 +1,27 @@
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 
 import { AbstractEntity } from '../../common/abstract.entity';
-import { RoleType } from '../../common/constants/role-type';
+import { RoleEntity } from '../role/role.entity';
 import { UserDto } from './dto/UserDto';
 import { PasswordTransformer } from './password.transformer';
 
 @Entity({ name: 'users' })
 export class UserEntity extends AbstractEntity<UserDto> {
-    @Column({ nullable: true })
-    firstName: string;
+    @Column({ unique: true, nullable: false })
+    username: string;
 
-    @Column({ nullable: true })
-    lastName: string;
-
-    @Column({ type: 'enum', enum: RoleType, default: RoleType.USER })
-    role: RoleType;
-
-    @Column({ unique: true, nullable: true })
+    @Column({ unique: true, nullable: false })
     email: string;
 
-    @Column({ nullable: true, transformer: new PasswordTransformer() })
+    @Column({ nullable: false, transformer: new PasswordTransformer() })
     password: string;
 
-    @Column({ nullable: true })
-    phone: string;
+    @OneToOne(RoleEntity)
+    @JoinColumn()
+    role: RoleEntity;
 
-    @Column({ nullable: true })
-    avatar: string;
+    /*@Column({ nullable: true })
+    avatar: string;*/
 
     dtoClass = UserDto;
 }

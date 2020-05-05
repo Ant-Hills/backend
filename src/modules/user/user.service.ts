@@ -49,16 +49,17 @@ export class UserService {
         userRegisterDto: UserRegisterDto,
         file: IFile,
     ): Promise<UserEntity> {
-        let avatar: string;
+        // let avatar: string;
         if (file && !this.validatorService.isImage(file.mimetype)) {
             throw new FileNotImageException();
         }
 
-        if (file) {
+        /*if (file) {
             avatar = await this.awsS3Service.uploadImage(file);
-        }
+        }*/
 
-        const user = this.userRepository.create({ ...userRegisterDto, avatar });
+        // const user = this.userRepository.create({ ...userRegisterDto, avatar });
+        const user = this.userRepository.create({ ...userRegisterDto });
 
         return this.userRepository.save(user);
     }

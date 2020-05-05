@@ -1,16 +1,17 @@
 FROM node:dubnium
 
-WORKDIR /app
+WORKDIR /usr/src/app
 
 COPY package.json yarn.lock ./
 
-RUN yarn install
+RUN yarn install 
 
 COPY . .
 
-CMD ["yarn","start:dev"]
-#FROM node:dubnium AS dist
+CMD [ "yarn", "start:dev" ]
 
+
+#FROM node:dubnium AS dist
 #COPY package.json yarn.lock ./
 
 #RUN yarn install
@@ -40,3 +41,4 @@ CMD ["yarn","start:dev"]
 #EXPOSE $PORT
 
 #CMD [ "yarn", "start:prod" ]
+
